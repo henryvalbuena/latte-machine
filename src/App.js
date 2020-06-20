@@ -14,6 +14,36 @@ import styles from "./App.module.css";
 function App() {
   let tmpLattes = [
     {
+      name: "Classic",
+      ingredients: [
+        {
+          id: "01",
+          color: "#FF2111",
+          parts: 1,
+        },
+      ],
+    },
+    {
+      name: "Agile",
+      ingredients: [
+        {
+          id: "01",
+          color: "#FF2111",
+          parts: 2,
+        },
+        {
+          id: "02",
+          color: "#0F21F1",
+          parts: 3,
+        },
+        {
+          id: "03",
+          color: "#FFF111",
+          parts: 1,
+        },
+      ],
+    },
+    {
       name: "Moccha",
       ingredients: [
         {
@@ -41,7 +71,7 @@ function App() {
           color: "yellow",
           parts: 1,
         },
-      ]
+      ],
     },
     {
       name: "Frapp",
@@ -71,7 +101,7 @@ function App() {
           color: "yellow",
           parts: 1,
         },
-      ]
+      ],
     },
     {
       name: "Unicorn Special",
@@ -106,15 +136,14 @@ function App() {
           color: "lightblue",
           parts: 2,
         },
-      ]
-    }
+      ],
+    },
   ];
   let makeLattes = () => {
-    let list = []
-    for (let latte of tmpLattes)
-      list.push(Latte(latte))
+    let list = [];
+    for (let latte of tmpLattes) list.push(Latte(latte));
     return list;
-  }
+  };
 
   let latteList = makeLattes();
 

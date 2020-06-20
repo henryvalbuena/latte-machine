@@ -2,10 +2,10 @@ import React from "react";
 
 import styles from "./Lattes.module.css";
 
-function Lattes(props) {
+function Lattes({latteList}) {
   return (
     <div className={styles.lattesContainer}>
-      {props.latteList}
+      {latteList}
     </div>
   );
 }
