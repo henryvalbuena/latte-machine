@@ -1,11 +1,16 @@
+.container {
+    padding-top: 10vh;
+}
 .createDrink {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
     width: 30%;
-    margin: auto;
-    margin-top: 40px;
+    margin: 0 auto;
+    padding: 10px;
     text-align: center;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    color: rgb(65, 65, 65);
 }
 
 .text {
@@ -15,10 +20,6 @@
 .icon {
     transform: rotate(45deg);
     margin: 10px;
-}
-
-.text, .icon {
-    color: rgb(65, 65, 65);
 }
 
 .createDrink:hover {

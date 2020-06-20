@@ -13,6 +13,7 @@
   transition-duration: 0.5s;
   cursor: pointer;
   color: rgb(65, 65, 65);
+  text-decoration: none;
 }
 
 .iconA:hover,

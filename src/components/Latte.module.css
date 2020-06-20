@@ -1,0 +1,33 @@
+/* .container {
+  padding: 10px;
+} */
+
+.latteBox {
+  width: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  color: rgb(65, 65, 65);
+}
+
+.latteBox:hover {
+  transform: scale(1.1);
+}
+
+.latteName {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+
+@media screen and (min-width: 601px) {
+  .latteBox { font-size: 1em;}
+}
+
+@media screen and (max-width: 600px) {
+  .latteBox { font-size: 1em; width: 20%;}
+}
