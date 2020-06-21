@@ -1,59 +1,48 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import LatteModalIngredient from "./LatteModalIngredient";
 
 import styles from "./LatteModal.module.css";
 
-class LatteModal extends Component {
+class LatteModal extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    this.initState();
-  }
-
-  initState() {
-    let { latte } = this.props;
-    let state = {
-      title: latte ? `Edit ${latte.name}` : "Create Latte",
-      latteName: "",
+    this.state = {
       disableRmv: true,
       disableAdd: false,
-      ingredientKey: 1,
+      ingredientKeyCounter: 1,
       ingredients: [],
     };
-    state.ingredients.push(
+    this.state.ingredients.push(
       <LatteModalIngredient
-        key={state.ingredientKey}
+        key={this.state.ingredientKeyCounter}
         ingredients={[]}
         add={this.handleAddIngredient.bind(this)}
         remove={this.handleRemoveIngredient.bind(this)}
-        id={state.ingredientKey}
+        id={this.state.ingredientKeyCounter}
       />
     );
-    this.setState(state);
   }
 
   handleAddIngredient() {
     if (!this.state.disableAdd) {
       let state = { ...this.state };
       let ingredients = [...state.ingredients];
+      state.ingredientKeyCounter += 1;
       ingredients.push(
         <LatteModalIngredient
-          key={++state.ingredientKey}
+          key={state.ingredientKeyCounter}
           ingredients={ingredients}
           add={this.handleAddIngredient.bind(this)}
           remove={this.handleRemoveIngredient.bind(this)}
-          id={state.ingredientKey}
+          id={state.ingredientKeyCounter}
         />
       );
       state.ingredients = ingredients;
       if (state.ingredients.length >= 4) state.disableAdd = true;
       state.disableRmv = false;
       this.setState(state);
-      console.log("Add", state.ingredientKey);
+      console.log("Add", state.ingredientKeyCounter);
     } else {
       console.log("Limit reached");
     }
@@ -74,19 +63,42 @@ class LatteModal extends Component {
     }
   }
 
-  closeModal() {
-    this.props.closeModal();
-    this.initState();
-  }
-
   render() {
+    let nextLatte = this.props.latte;
+
+    let title = nextLatte?.name ? `Edit ${nextLatte.name}` : "Create Latte";
+    let latteName = nextLatte?.name ? nextLatte.name : "";
+    let nextIngredients = () => {
+      let list = [];
+      if (nextLatte.name) {
+        let key = 0;
+        for (let latte of nextLatte.ingredients) {
+          list.push(
+            <LatteModalIngredient
+              key={key}
+              ingredients={latte}
+              add={this.handleAddIngredient.bind(this)}
+              remove={this.handleRemoveIngredient.bind(this)}
+              id={key}
+            />
+          );
+          key++;
+        }
+        return list;
+      } else {
+        return this.state.ingredients;
+      }
+    };
+
+    console.log(`Latte Name: ${latteName}`);
+
     return (
       <div
         style={{ display: this.props.display ? "block" : "none" }}
         className={styles.modalContainer}
       >
         <div className={styles.modalContent}>
-          <h2 className={styles.title}>{this.state.title}</h2>
+          <h2 className={styles.title}>{title}</h2>
           <div className={styles.preview}></div>
           <form
             className={styles.form}
@@ -99,10 +111,10 @@ class LatteModal extends Component {
                 type="text"
                 id="latteName"
                 name="latteName"
-                value={this.latteName}
+                defaultValue={latteName}
               />
             </div>
-            {this.state.ingredients}
+            {nextIngredients()}
             <button className={styles.btns} type="submit">
               SAVE
             </button>
@@ -114,7 +126,7 @@ class LatteModal extends Component {
             </button>
             <button
               className={styles.btns}
-              onClick={() => this.closeModal()}
+              onClick={() => this.props.closeModal()}
               type="button"
             >
               CANCEL

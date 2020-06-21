@@ -6,11 +6,11 @@ import styles from "./Footer.module.css";
 function Footer(props) {
   return (
       <div className={styles.footer}>
-        <NavLink className={styles.iconA} to="/drinks">
+        <NavLink className={styles.iconA} to="/lattes">
           <i className={[styles.icon, "material-icons"].join(" ")}>
             local_cafe
           </i>
-          <div>Drinks</div>
+          <div>Lattes</div>
         </NavLink>
         <NavLink className={styles.iconB} to="/user">
           <i className={[styles.icon, "material-icons"].join(" ")}>
