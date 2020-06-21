@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateLatte from "./components/CreateLatte";
 import Lattes from "./components/Lattes";
-import Latte from "./components/Latte";
+// import Latte from "./components/Latte";
 import User from "./components/User";
 import LatteModal from "./components/LatteModal";
 
@@ -18,8 +18,9 @@ class App extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      latteComponentList: [],
+      isEditMode: false,
       latteComponentKeyCounter: 1,
+      latteToEdit: {},
       latteDataList: [],
     };
   }
@@ -27,7 +28,6 @@ class App extends Component {
   openModal = () => {
     this.setState({
       ...this.state,
-      // latteDataList: [],
       isModalOpen: true,
     });
     console.log("isOpen", true);
@@ -36,16 +36,15 @@ class App extends Component {
   closeModal = () => {
     this.setState({
       ...this.state,
-      latteDataList: [],
       isModalOpen: false,
+      isEditMode: false,
     });
     console.log("isOpen", false);
   };
 
   editLatte = (id) => {
     console.log("edit latte id:", id);
-    console.log("latteDataList", this.state.latteDataList)
-    // let latteData = this.state.latteDataList.filter((x) => parseInt(x.id) === parseInt(id))[0];
+    console.log("latteDataList", this.state.latteDataList);
     let latteData = this.state.latteDataList.filter((x) => {
       console.log("obj-x", x);
       console.log("id", id);
@@ -55,36 +54,46 @@ class App extends Component {
     console.log("latteData index 0", latteData[0]);
     this.setState({
       ...this.state,
+      isEditMode: true,
       isModalOpen: true,
-      latteDataList: latteData,
+      latteToEdit: latteData[0],
     });
-    console.log("latteData:", latteData);
   };
 
   handleForm = (event) => {
     const newLatte = processForm(event.target);
-
-    let list = [...this.state.latteComponentList];
     let dataList = [...this.state.latteDataList];
-    let latteComponentKey = this.state.latteComponentKeyCounter;
-    let isModalOpen = false;
-    list.push(
-      <Latte
-        key={latteComponentKey}
-        {...newLatte}
-        edit={() => this.editLatte(latteComponentKey)}
-      />
-    );
-    dataList.push({ ...newLatte, id: latteComponentKey });
-    latteComponentKey++;
-    this.setState({
-      ...this.state,
-      isModalOpen: isModalOpen,
-      latteComponentList: list,
-      latteDataList: dataList,
-      latteComponentKeyCounter: latteComponentKey,
-    });
-    console.log("submitted");
+
+    if (this.state.isEditMode) {
+      console.log("editLatt", newLatte);
+      const id = this.state.latteToEdit.id;
+      let updatedDataList = dataList.map((l) => {
+        if (parseInt(l.id) === parseInt(id)) {
+          return { ...newLatte, id: id };
+        }
+        return l;
+      });
+      this.setState({
+        ...this.state,
+        isModalOpen: false,
+        isEditMode: false,
+        latteDataList: updatedDataList,
+      });
+      console.log("editted")
+    } else {
+      console.log("newLatt", newLatte);
+      let latteComponentKey = this.state.latteComponentKeyCounter;
+      dataList.push({ ...newLatte, id: latteComponentKey });
+      latteComponentKey++;
+      this.setState({
+        ...this.state,
+        isModalOpen: false,
+        isEditMode: false,
+        latteDataList: dataList,
+        latteComponentKeyCounter: latteComponentKey,
+      });
+      console.log("submitted");
+    }
     event.preventDefault();
   };
 
@@ -94,7 +103,8 @@ class App extends Component {
         return (
           <LatteModal
             display={this.state.isModalOpen}
-            latte={this.state.latteDataList}
+            editMode={this.state.isEditMode}
+            latte={this.state.latteToEdit}
             closeModal={this.closeModal}
             handleForm={this.handleForm}
           />
@@ -109,7 +119,10 @@ class App extends Component {
               <Route exact path="/lattes">
                 {renderModal()}
                 <CreateLatte openModal={() => this.openModal} />
-                <Lattes latteList={this.state.latteComponentList} />
+                <Lattes
+                  latteList={this.state.latteDataList}
+                  edit={this.editLatte}
+                />
               </Route>
               <Route exact path="/user">
                 <User />

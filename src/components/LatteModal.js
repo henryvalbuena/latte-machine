@@ -16,7 +16,7 @@ class LatteModal extends PureComponent {
     this.state.ingredients.push(
       <LatteModalIngredient
         key={this.state.ingredientKeyCounter}
-        ingredients={[]}
+        ingredient={{}}
         add={this.handleAddIngredient.bind(this)}
         remove={this.handleRemoveIngredient.bind(this)}
         id={this.state.ingredientKeyCounter}
@@ -32,7 +32,7 @@ class LatteModal extends PureComponent {
       ingredients.push(
         <LatteModalIngredient
           key={state.ingredientKeyCounter}
-          ingredients={ingredients}
+          ingredient={ingredients}
           add={this.handleAddIngredient.bind(this)}
           remove={this.handleRemoveIngredient.bind(this)}
           id={state.ingredientKeyCounter}
@@ -42,7 +42,6 @@ class LatteModal extends PureComponent {
       if (state.ingredients.length >= 4) state.disableAdd = true;
       state.disableRmv = false;
       this.setState(state);
-      console.log("Add", state.ingredientKeyCounter);
     } else {
       console.log("Limit reached");
     }
@@ -64,33 +63,33 @@ class LatteModal extends PureComponent {
   }
 
   render() {
-    let nextLatte = this.props.latte;
+    const nextLatte = this.props;
 
-    let title = nextLatte?.name ? `Edit ${nextLatte.name}` : "Create Latte";
-    let latteName = nextLatte?.name ? nextLatte.name : "";
+    let isEdit = nextLatte.editMode;
+    let latteName = isEdit ? nextLatte.latte.name : "";
+    let title = isEdit ? `Edit ${latteName}` : "Create Latte";
+
     let nextIngredients = () => {
       let list = [];
-      if (nextLatte.name) {
-        let key = 0;
-        for (let latte of nextLatte.ingredients) {
+      if (isEdit) {
+        let latteModalIngredientKey = 0;
+        for (let latte of nextLatte.latte.ingredients) {
           list.push(
             <LatteModalIngredient
-              key={key}
-              ingredients={latte}
+              key={latteModalIngredientKey}
+              ingredient={latte}
               add={this.handleAddIngredient.bind(this)}
               remove={this.handleRemoveIngredient.bind(this)}
-              id={key}
+              id={latteModalIngredientKey}
             />
           );
-          key++;
+          latteModalIngredientKey++;
         }
         return list;
       } else {
         return this.state.ingredients;
       }
     };
-
-    console.log(`Latte Name: ${latteName}`);
 
     return (
       <div
