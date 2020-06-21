@@ -18,7 +18,7 @@ class LatteModal extends Component {
     let { latte } = this.props;
     let state = {
       title: latte ? `Edit ${latte.name}` : "Create Latte",
-      latteName: latte?.name ? latte.name : "",
+      latteName: "",
       disableRmv: true,
       disableAdd: false,
       ingredientKey: 1,
