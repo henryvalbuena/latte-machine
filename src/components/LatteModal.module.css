@@ -1,0 +1,117 @@
+option {
+  font-weight: bold;
+}
+.modalContainer {
+  position: fixed;
+  z-index: 1;
+  padding-top: 20vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  width: 80%;
+  position: relative;
+  background-color: white;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: animateModal 0.4s;
+}
+
+@keyframes animateModal {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.latteName {
+  display: flex;
+  justify-content: center;
+}
+
+.lableBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+.labels,
+.inputs {
+  margin: 5px;
+}
+
+.labels {
+  padding-top: 5px;
+}
+
+.btns {
+  font-size: 0.8em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 0 rgb(65, 65, 65);
+  background-color: white;
+  padding: 5px 5px;
+  text-decoration: none;
+  color: rgb(65, 65, 65);
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btns:hover {
+  background-color: rgb(65, 65, 65);
+  color: burlywood;
+}
+
+.btns.red:hover, .btns:hover .red {
+    color: red;
+}
+
+.icon {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  width: 18px;
+}
+
+.inputs {
+  border: none;
+  box-shadow: 0 0 1px 0 rgb(65, 65, 65);
+  border-radius: 5px;
+}
+
+.inputs[type="text"] {
+  width: 100px;
+  font-size: 1em;
+}
+
+.inputs[type="number"] {
+  width: 5%;
+  font-size: 1em;
+}
+
+.inputs[type="color"] {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 1em;
+}

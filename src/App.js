@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Main from "./containers/Main";
@@ -8,6 +8,7 @@ import CreateLatte from "./components/CreateLatte";
 import Lattes from "./components/Lattes";
 import Latte from "./components/Latte";
 import User from "./components/User";
+import LatteModal from "./components/LatteModal";
 
 import styles from "./App.module.css";
 
@@ -141,11 +142,36 @@ function App() {
   ];
   let makeLattes = () => {
     let list = [];
-    for (let latte of tmpLattes) list.push(Latte(latte));
+    let counter = 0;
+    for (let latte of tmpLattes)
+      list.push(<Latte key={counter++} {...latte} />);
     return list;
   };
 
   let latteList = makeLattes();
+
+  let [isModalOpen, setModal] = useState(true);
+
+  let openModal = () => {
+    setModal(!isModalOpen);
+    console.log("open", isModalOpen);
+  };
+
+  let closeModal = () => {
+    setModal(false);
+    console.log("closed", isModalOpen);
+  };
+
+  let handleForm = (event) => {
+    let { ingredient, parts, color, latteName } = event.target;
+    console.log(...ingredient);
+    console.log(...parts);
+    console.log(...color);
+    console.log(latteName.value);
+    // console.log(event.target)
+    console.log("submitted")
+    event.preventDefault();
+  };
 
   return (
     <Router>
@@ -154,8 +180,13 @@ function App() {
         <Main>
           <Switch>
             <Route exact path="/drinks">
-              <CreateLatte />
+              <CreateLatte openModal={() => openModal} />
               <Lattes latteList={latteList} />
+              <LatteModal
+                display={isModalOpen}
+                closeModal={closeModal}
+                handleForm={handleForm}
+              />
             </Route>
             <Route exact path="/user">
               <User />
