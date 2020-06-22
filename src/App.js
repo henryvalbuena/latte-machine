@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import processForm from "./helpers/processForm";
 import getAuthToken from "./helpers/getAuthToken";
 import isAuthorized from "./helpers/isAuthorized";
-import { getLattes, postLattes } from "./services/apiService";
+import { getLattes, postLattes, editLattes } from "./services/apiService";
 
 import Main from "./containers/Main";
 import Header from "./components/Header";
@@ -21,7 +21,6 @@ class App extends Component {
     this.state = {
       isModalOpen: false,
       isEditMode: false,
-      latteComponentKeyCounter: 0,
       latteToEdit: {},
       latteDataList: [],
       authToken: null,
@@ -31,27 +30,31 @@ class App extends Component {
 
   async componentDidMount() {
     const token = getAuthToken();
+    let auth = null;
+    let dataList = [];
     if (!this.state.authToken && token) {
-      const lattes = await getLattes(token);
-      let dataList = [];
-      let keyCounter = 0;
-      for (let latte of lattes.drinks) {
-        dataList.push({
-          id: keyCounter,
-          title: latte.title,
-          ingredients: [...latte.recipe]
-        })
-        keyCounter++;
-      }
-      console.log(dataList);
-      this.setState({
-        ...this.state,
-        latteDataList: dataList,
-        latteComponentKeyCounter: keyCounter,
-        authToken: token,
-        isAuthorized: isAuthorized(token),
-      });
+      auth = isAuthorized(token);
     }
+    if (auth) {
+      try {
+        const lattes = await getLattes(token);
+        for (let latte of lattes.drinks) {
+          dataList.push({
+            id: latte.id,
+            title: latte.title,
+            ingredients: [...latte.ingredients],
+          });
+        }
+      } catch (err) {
+        console.log("Init err", err);
+      }
+    }
+    this.setState({
+      ...this.state,
+      latteDataList: dataList,
+      authToken: token,
+      isAuthorized: auth,
+    });
   }
 
   openModal = () => {
@@ -112,39 +115,40 @@ class App extends Component {
   handleForm = (event) => {
     const newLatte = processForm(event.target);
     let dataList = [...this.state.latteDataList];
-    console.log("newLatte", newLatte)
     if (this.state.isEditMode) {
-      console.log("editLatt", newLatte);
       const id = this.state.latteToEdit.id;
-      let updatedDataList = dataList.map((l) => {
-        if (parseInt(l.id) === parseInt(id)) {
-          return { ...newLatte, id: id };
-        }
-        return l;
-      });
-      this.setState({
-        ...this.state,
-        isModalOpen: false,
-        isEditMode: false,
-        latteDataList: updatedDataList,
-      });
-      console.log("editted");
-    } else {
-      console.log("newLatt", newLatte);
-      let latteComponentKey = this.state.latteComponentKeyCounter;
-      dataList.push({ ...newLatte, id: latteComponentKey });
-      latteComponentKey++;
-      try {
-        const post = postLattes(newLatte, this.state.authToken);
-        post.then(res => console.log(res))
-          .catch(err => console.log(err.message))
+      let patch = editLattes(id, newLatte, this.state.authToken);
+      patch.then((data) => {
+        const latte = data.drinks[0];
+        const updatedDataList = dataList.map((l) => {
+          if (parseInt(l.id) === parseInt(id)) return latte;
+          else return l;
+        });
         this.setState({
           ...this.state,
           isModalOpen: false,
           isEditMode: false,
-          latteDataList: dataList,
-          latteComponentKeyCounter: latteComponentKey,
+          latteDataList: updatedDataList,
         });
+        console.log("editted");
+      });
+    } else {
+      try {
+        const post = postLattes(newLatte, this.state.authToken);
+        post
+          .then((data) => {
+            const latte = data.drinks[0];
+            dataList.push({
+              ...latte,
+            });
+            this.setState({
+              ...this.state,
+              isModalOpen: false,
+              isEditMode: false,
+              latteDataList: dataList,
+            });
+          })
+          .catch((err) => console.log("POST ERR", err));
         console.log("submitted");
       } catch (err) {
         console.log("POST ERR", err);

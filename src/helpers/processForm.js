@@ -15,7 +15,7 @@ function processForm(payload) {
     parsedPayload.ingredients = getObj(ingredientName, parts, color);
   } else {
     parsedPayload.ingredients[0].name = ingredientName.value;
-    parsedPayload.ingredients[0].parts = parts.value;
+    parsedPayload.ingredients[0].parts = parseInt(parts.value);
     parsedPayload.ingredients[0].color = color.value;
   }
   return parsedPayload;
