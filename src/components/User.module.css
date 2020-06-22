@@ -4,7 +4,7 @@
 
 .userBox {
   margin: 0 auto;
-  width: 30%;
+  width: 100%;
   text-align: center;
 }
 
@@ -26,6 +26,8 @@
   color: burlywood;
 }
 
-.text {
-  padding: 20px 10px;
+.textBox {
+  padding: 50px 0;
+  overflow: auto;
 }
+

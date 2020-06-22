@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 
 import LatteModalIngredient from "./LatteModalIngredient";
 
 import styles from "./LatteModal.module.css";
 
-class LatteModal extends PureComponent {
+class LatteModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,6 +67,7 @@ class LatteModal extends PureComponent {
 
     let isEdit = nextLatte.editMode;
     let latteName = isEdit ? nextLatte.latte.name : "";
+    let latteId = isEdit ? nextLatte.latte.id : null;
     let title = isEdit ? `Edit ${latteName}` : "Create Latte";
 
     let nextIngredients = () => {
@@ -119,6 +120,7 @@ class LatteModal extends PureComponent {
             </button>
             <button
               className={[styles.btns, styles.red].join(" ")}
+              onClick={() => this.props.removeLatte(latteId)}
               type="button"
             >
               DELETE
