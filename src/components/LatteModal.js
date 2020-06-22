@@ -35,7 +35,7 @@ function LatteModal(props) {
           <div className={styles.latteName}>
             <label className={styles.labels}>Latte Name</label>
             <input
-              className={styles.inputs}
+              className={[styles.inputs, styles.inputName].join(" ")}
               type="text"
               id="latteName"
               name="latteName"
@@ -54,7 +54,7 @@ function LatteModal(props) {
             DELETE
           </button>
           <button
-            className={styles.btns}
+            className={[styles.btns, styles.cancel].join(" ")}
             onClick={() => props.closeModal()}
             type="button"
           >
