@@ -28,3 +28,7 @@ export const getLattes = async (token) => {
 export const editLattes = async (id, payload, token) => {
   return axiosManager("patch", token, `/drinks/${id}`, payload);
 };
+
+export const deleteLattes = async (id, token) => {
+  return axiosManager("delete", token, `/drinks/${id}`);
+};

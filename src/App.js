@@ -4,7 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import processForm from "./helpers/processForm";
 import getAuthToken from "./helpers/getAuthToken";
 import isAuthorized from "./helpers/isAuthorized";
-import { getLattes, postLattes, editLattes } from "./services/apiService";
+import {
+  getLattes,
+  postLattes,
+  editLattes,
+  deleteLattes,
+} from "./services/apiService";
 
 import Main from "./containers/Main";
 import Header from "./components/Header";
@@ -32,22 +37,20 @@ class App extends Component {
     const token = getAuthToken();
     let auth = null;
     let dataList = [];
+    try {
+      const lattes = await getLattes(token);
+      for (let latte of lattes.drinks) {
+        dataList.push({
+          id: latte.id,
+          title: latte.title,
+          ingredients: [...latte.ingredients],
+        });
+      }
+    } catch (err) {
+      console.log("Init err", err);
+    }
     if (!this.state.authToken && token) {
       auth = isAuthorized(token);
-    }
-    if (auth) {
-      try {
-        const lattes = await getLattes(token);
-        for (let latte of lattes.drinks) {
-          dataList.push({
-            id: latte.id,
-            title: latte.title,
-            ingredients: [...latte.ingredients],
-          });
-        }
-      } catch (err) {
-        console.log("Init err", err);
-      }
     }
     this.setState({
       ...this.state,
@@ -75,6 +78,7 @@ class App extends Component {
   };
 
   editLatte = (id) => {
+    if (!this.state.isAuthorized) return;
     let latteData = this.state.latteDataList.filter(
       (x) => parseInt(x.id) === parseInt(id)
     );
@@ -88,19 +92,36 @@ class App extends Component {
 
   removeLatte = (id) => {
     let latteList = [...this.state.latteDataList];
-    console.log("latteList", latteList);
-    let index = latteList.findIndex((l) => parseInt(l.id) === parseInt(id));
-    console.log("index", index);
-    if (index >= 0) {
-      latteList.splice(index, 1);
+    if (this.state.isAuthorized) {
+      let remove = deleteLattes(id, this.state.authToken);
+      remove
+        .then((res) => {
+          let index = latteList.findIndex(
+            (l) => parseInt(l.id) === parseInt(id)
+          );
+          latteList.splice(index, 1);
+          this.setState({
+            ...this.state,
+            isEditMode: false,
+            isModalOpen: false,
+            latteDataList: latteList,
+          });
+        })
+        .catch((err) => {
+          console.log("REMOVE", err);
+          this.setState({
+            ...this.state,
+            isEditMode: false,
+            isModalOpen: false,
+          });
+        });
+    } else {
       this.setState({
         ...this.state,
         isEditMode: false,
         isModalOpen: false,
-        latteDataList: latteList,
       });
     }
-    console.log("removeLatte", id);
   };
 
   hangleLogout = () => {
@@ -113,6 +134,15 @@ class App extends Component {
   };
 
   handleForm = (event) => {
+    if (!this.state.isAuthorized) {
+      event.preventDefault();
+      this.setState({
+        ...this.state,
+        isModalOpen: false,
+        isEditMode: false,
+      });
+      return;
+    }
     const newLatte = processForm(event.target);
     let dataList = [...this.state.latteDataList];
     if (this.state.isEditMode) {
