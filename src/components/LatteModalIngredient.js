@@ -9,8 +9,8 @@ function LatteModalIngredient({ingredient, add, remove, id}) {
       <input
         className={styles.inputs}
         type="text"
-        name="ingredient"
-        defaultValue={ingredient.ingredient}
+        name="ingredientName"
+        defaultValue={ingredient.name}
       />
       <label className={styles.labels}>Parts</label>
       <select name="parts" defaultValue={ingredient.parts}>

@@ -21,7 +21,7 @@ class App extends Component {
     this.state = {
       isModalOpen: false,
       isEditMode: false,
-      latteComponentKeyCounter: 1,
+      latteComponentKeyCounter: 0,
       latteToEdit: {},
       latteDataList: [],
       authToken: null,
@@ -33,11 +33,21 @@ class App extends Component {
     const token = getAuthToken();
     if (!this.state.authToken && token) {
       const lattes = await getLattes(token);
-
-      console.log("LATTES FROM API", lattes);
-
+      let dataList = [];
+      let keyCounter = 0;
+      for (let latte of lattes.drinks) {
+        dataList.push({
+          id: keyCounter,
+          title: latte.title,
+          ingredients: [...latte.recipe]
+        })
+        keyCounter++;
+      }
+      console.log(dataList);
       this.setState({
         ...this.state,
+        latteDataList: dataList,
+        latteComponentKeyCounter: keyCounter,
         authToken: token,
         isAuthorized: isAuthorized(token),
       });

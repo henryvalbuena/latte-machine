@@ -66,9 +66,9 @@ class LatteModal extends Component {
     const nextLatte = this.props;
 
     let isEdit = nextLatte.editMode;
-    let latteName = isEdit ? nextLatte.latte.name : "";
+    let latteTitle = isEdit ? nextLatte.latte.title : "";
     let latteId = isEdit ? nextLatte.latte.id : null;
-    let title = isEdit ? `Edit ${latteName}` : "Create Latte";
+    let title = isEdit ? `Edit ${latteTitle}` : "Create Latte";
 
     let nextIngredients = () => {
       let list = [];
@@ -111,7 +111,7 @@ class LatteModal extends Component {
                 type="text"
                 id="latteName"
                 name="latteName"
-                defaultValue={latteName}
+                defaultValue={latteTitle}
               />
             </div>
             {nextIngredients()}

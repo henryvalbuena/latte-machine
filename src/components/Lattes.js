@@ -9,7 +9,7 @@ function Lattes({ latteList, edit }) {
     return (
       <Latte
         key={l.id}
-        name={l.name}
+        name={l.title}
         ingredients= {l.ingredients}
         edit={() => edit(l.id)}
       />
