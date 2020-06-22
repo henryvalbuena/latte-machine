@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./LatteModal.module.css";
 
-function LatteModalIngredient({ingredient, add, remove, id}) {
+function LatteModalIngredient({ ingredient, add, remove, id }) {
   return (
     <div className={styles.lableBox}>
       <label className={styles.labels}>Ingredient Name</label>
@@ -19,7 +19,12 @@ function LatteModalIngredient({ingredient, add, remove, id}) {
         <option value="3">3</option>
       </select>
       <label className={styles.labels}>Color</label>
-      <input className={styles.inputs} type="color" name="color" defaultValue={ingredient.color} />
+      <input
+        className={styles.inputs}
+        type="color"
+        name="color"
+        defaultValue={ingredient.color}
+      />
       <span className={styles.btns} onClick={() => remove(id)}>
         <i className={[styles.icon, styles.red, "material-icons"].join(" ")}>
           close
