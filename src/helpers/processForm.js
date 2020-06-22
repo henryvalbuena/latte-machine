@@ -1,7 +1,7 @@
 function processForm(payload) {
   const { ingredientName, parts, color, latteName } = payload;
   let parsedPayload = {
-    name: latteName.value,
+    title: latteName.value,
     ingredients: [
       {
         name: null,

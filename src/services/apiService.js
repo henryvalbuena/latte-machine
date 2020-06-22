@@ -5,7 +5,7 @@ const apiURL = environment.apiURL;
 
 const axiosManager = async (method, token, endpoint, payload = null) => {
   const parsedPayload = {
-    title: payload?.name,
+    title: payload?.title,
     recipe: payload?.ingredients,
   };
   const res = await axios({

@@ -112,7 +112,7 @@ class App extends Component {
   handleForm = (event) => {
     const newLatte = processForm(event.target);
     let dataList = [...this.state.latteDataList];
-
+    console.log("newLatte", newLatte)
     if (this.state.isEditMode) {
       console.log("editLatt", newLatte);
       const id = this.state.latteToEdit.id;
