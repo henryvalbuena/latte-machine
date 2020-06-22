@@ -1,18 +1,22 @@
 .footer {
+  background-color: white;
+  width: 100%;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
 }
 
 .iconA,
 .iconB {
   padding: 5px 40px;
   text-align: center;
-  border-radius: 5px;
   transition-duration: 0.5s;
   cursor: pointer;
   color: rgb(65, 65, 65);
+  text-decoration: none;
 }
 
 .iconA:hover,

@@ -1,0 +1,33 @@
+.container {
+  padding-top: 20vh;
+}
+
+.userBox {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.login {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 0 rgb(65, 65, 65);
+  background-color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: inherit;
+  color: rgb(65, 65, 65);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.login:hover {
+  background-color: rgb(65, 65, 65);
+  color: burlywood;
+}
+
+.textBox {
+  padding: 50px 0;
+  overflow: auto;
+}
+

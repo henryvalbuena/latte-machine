@@ -1,0 +1,17 @@
+.lattesContainer {
+  width: 100%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: auto auto auto auto;
+  display: grid;
+  gap: 10px 0;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .lattesContainer {
+    grid-template-columns: auto auto;
+  }
+}
