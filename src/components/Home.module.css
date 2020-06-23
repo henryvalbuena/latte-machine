@@ -1,0 +1,48 @@
+.container {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text {
+  padding-top: 30vh;
+  font-size: 3em;
+}
+
+.line {
+  border-radius: 5px;
+  margin: 0 auto;
+  height: 2px;
+  width: 200px;
+  background: linear-gradient(90deg, #414141 40%, #deb887, #414141 60%);
+  background-size: 200% 200%;
+  animation: change 10s ease-in-out infinite;
+}
+
+@keyframes change {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+
+.arrow {
+  padding-top: 30vh;
+  font-size: 5em;
+  animation: arrow-jump 1.5s infinite;
+}
+
+@keyframes arrow-jump {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+}

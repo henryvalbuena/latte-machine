@@ -11,6 +11,7 @@ import {
   deleteLattes,
 } from "./services/apiService";
 
+import Home from "./components/Home";
 import Main from "./containers/Main";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -213,7 +214,10 @@ class App extends Component {
           <Header />
           <Main>
             <Switch>
-              <Route exact path="/lattes">
+              <Route exact path="/latte-machine">
+                <Home />
+              </Route>
+              <Route exact path="/latte-machine/lattes">
                 {renderModal()}
                 {renderCreateLatte()}
                 <Lattes
@@ -221,7 +225,7 @@ class App extends Component {
                   edit={this.editLatte}
                 />
               </Route>
-              <Route exact path="/user">
+              <Route exact path="/latte-machine/user">
                 <User
                   token={this.state.authToken}
                   hangleLogout={() => this.hangleLogout}

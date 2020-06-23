@@ -1,6 +1,6 @@
 # Latte-Machine React Frontend
 
-[Demo](henryis.me/lattes)
+[Demo](http://henryis.me/latte-machine/)
 
 ![react-app](https://github.com/henryvalbuena/latte-machine/blob/master/frontend_react.gif)
 

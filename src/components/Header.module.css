@@ -1,3 +1,7 @@
+.home {
+    text-decoration: none;
+    color: inherit;
+}
 .left {
     color: burlywood;
     font-style: italic;
