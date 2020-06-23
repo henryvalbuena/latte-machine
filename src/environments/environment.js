@@ -14,7 +14,7 @@ const ghpages = {
     url: "coffe-shop-project", // the auth0 domain prefix
     audience: "drinks", // the audience set for the auth0 app
     clientId: "SuLculVALk6l2oZ7aFFQUuZZ8N6lZUrH", // the client id generated for the auth0 app
-    callbackURL: "http://henryis.me/latte-machine/lattes", // the base url of the running react application.
+    callbackURL: "http://henryis.me/latte-machine", // the base url of the running react application.
   },
 }
 
