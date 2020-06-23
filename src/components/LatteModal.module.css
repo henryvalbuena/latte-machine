@@ -11,10 +11,11 @@ option {
   height: 100%;
   overflow: auto;
   background-color: rgb(0, 0, 0, 0.4);
+  overflow: auto;
 }
 
 .modalContent {
-  width: 80%;
+  max-width: 500px;
   position: relative;
   background-color: white;
   margin: 0 auto;
@@ -22,6 +23,17 @@ option {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: animateModal 0.4s;
+}
+
+@media only screen and (max-width: 600px) {
+  .modalContent {
+    max-width: 280px;
+  }
+  .modalContainer {
+    max-height: 70%;
+    padding-bottom: 40vh;
+    padding-top: 3vh;
+  }
 }
 
 @keyframes animateModal {

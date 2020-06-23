@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import processForm from "./helpers/processForm";
 import getAuthToken from "./helpers/getAuthToken";
-import isAuthorized from "./helpers/isAuthorized";
+import isAuthorized from "./services/isAuthorized";
 import {
   getLattes,
   postLattes,

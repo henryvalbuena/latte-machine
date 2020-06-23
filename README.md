@@ -1,68 +1,54 @@
+# Latte-Machine React Frontend
+
+[Demo](henryis.me/lattes)
+
+This project is a refactoring of the [full-stack-project](https://github.com/henryvalbuena/full-stack-project) created for the Full-stack Nano Degree. The original project found in the previous link, was built using Angular.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Project Dependency
+
+This frontend is part of a full-stack project (see [here](https://github.com/henryvalbuena/full-stack-project)). You will need to either setup a backend api or use the one provided in the previous link.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+-  `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+-  `yarn test`
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
+-  `yarn build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Installing Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Installing Node and NPM
 
-### `yarn eject`
+This project depends on Nodejs and Node Package Manager (NPM). Before continuing, you must download and install Node (the download includes NPM) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Installing project dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project uses NPM to manage software dependencies. NPM Relies on the package.json file located in the `root` directory of this repository. After cloning, open your terminal and run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+>_tip_: **npm i** is shorthand for **npm install**
 
-## Learn More
+### Authentication
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The authentication system used for this project is Auth0. `./src/services/isAuthorized.js` contains the logic to check if the user is authorized to perform CRUD operations. After logging in through Auth0, the application manages the JWT token upon successful callback. This token is then consumed by our DrinkService (`./src/services/apiService.js`) and passed as an Authorization header when making requests to our backend.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Authorization
 
-### Code Splitting
+The Auth0 JWT includes claims for permissions based on the user's role within the Auth0 system. This project makes use of these claims using the `token.contains('permission')` which checks if particular permissions exist within the JWT permissions claim of the currently logged in user. This logic is defined in  `./src/services/isAuthorized.js` and is then used to enable and disable buttons, form submissions, and perform CRUD operations in the `/lattes` route.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Author
+Henry Valbuena
