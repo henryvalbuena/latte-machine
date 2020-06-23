@@ -1,5 +1,5 @@
 .container {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -32,7 +32,7 @@
 }
 
 .arrow {
-  padding-top: 30vh;
+  padding-top: 20vh;
   font-size: 5em;
   animation: arrow-jump 1.5s infinite;
 }
@@ -44,5 +44,21 @@
   100% {
     opacity: 1;
     transform: translateY(10px);
+  }
+}
+
+@media only screen 
+  and (max-device-width: 667px) { 
+    .text, .arrow {
+        padding-top: 10vh;
+    }
+}
+
+@media only screen and (max-device-width: 1024px) and (orientation: landscape) {
+  .text {
+    padding-top: 20vh;
+  }
+  .arrow {
+      padding-top: 5vh;
   }
 }
