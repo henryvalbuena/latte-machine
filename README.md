@@ -2,7 +2,7 @@
 
 [Demo](henryis.me/lattes)
 
-![react-app][frontend_react.gif]
+![react-app][https://github.com/henryvalbuena/latte-machine/blob/master/frontend_react.gif]
 
 This project is a refactoring of the [full-stack-project](https://github.com/henryvalbuena/full-stack-project) created for the Full-stack Nano Degree. The original project found in the previous link, was built using Angular.
 
