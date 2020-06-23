@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/latte-machine/static/css/main.1724c5a0.chunk.css",
-    "main.js": "/latte-machine/static/js/main.96b14a6e.chunk.js",
-    "main.js.map": "/latte-machine/static/js/main.96b14a6e.chunk.js.map",
+    "main.css": "/latte-machine/static/css/main.a9526216.chunk.css",
+    "main.js": "/latte-machine/static/js/main.d08c8874.chunk.js",
+    "main.js.map": "/latte-machine/static/js/main.d08c8874.chunk.js.map",
     "runtime-main.js": "/latte-machine/static/js/runtime-main.9a7394a5.js",
     "runtime-main.js.map": "/latte-machine/static/js/runtime-main.9a7394a5.js.map",
-    "static/js/2.b9244223.chunk.js": "/latte-machine/static/js/2.b9244223.chunk.js",
-    "static/js/2.b9244223.chunk.js.map": "/latte-machine/static/js/2.b9244223.chunk.js.map",
+    "static/js/2.f63d581b.chunk.js": "/latte-machine/static/js/2.f63d581b.chunk.js",
+    "static/js/2.f63d581b.chunk.js.map": "/latte-machine/static/js/2.f63d581b.chunk.js.map",
     "index.html": "/latte-machine/index.html",
-    "precache-manifest.2f30797d58738db46ee57c2c6cc6a967.js": "/latte-machine/precache-manifest.2f30797d58738db46ee57c2c6cc6a967.js",
+    "precache-manifest.7e1a984dc6712fa6e046ed24d45e77f6.js": "/latte-machine/precache-manifest.7e1a984dc6712fa6e046ed24d45e77f6.js",
     "service-worker.js": "/latte-machine/service-worker.js",
-    "static/css/main.1724c5a0.chunk.css.map": "/latte-machine/static/css/main.1724c5a0.chunk.css.map",
-    "static/js/2.b9244223.chunk.js.LICENSE.txt": "/latte-machine/static/js/2.b9244223.chunk.js.LICENSE.txt"
+    "static/css/main.a9526216.chunk.css.map": "/latte-machine/static/css/main.a9526216.chunk.css.map",
+    "static/js/2.f63d581b.chunk.js.LICENSE.txt": "/latte-machine/static/js/2.f63d581b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9a7394a5.js",
-    "static/js/2.b9244223.chunk.js",
-    "static/css/main.1724c5a0.chunk.css",
-    "static/js/main.96b14a6e.chunk.js"
+    "static/js/2.f63d581b.chunk.js",
+    "static/css/main.a9526216.chunk.css",
+    "static/js/main.d08c8874.chunk.js"
   ]
 }
