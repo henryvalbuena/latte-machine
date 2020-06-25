@@ -11,14 +11,14 @@ import {
   deleteLattes,
 } from "./services/apiService";
 
-import Home from "./components/Home";
 import Main from "./containers/Main";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import CreateLatte from "./components/CreateLatte";
-import Lattes from "./components/Lattes";
-import User from "./components/User";
-import LatteModal from "./components/LatteModal";
+import Home from "./components/home/Home";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import CreateLatte from "./components/latte/CreateLatte";
+import Lattes from "./components/latte/Lattes";
+import User from "./components/user/User";
+import LatteModal from "./components/modal/LatteModal";
 
 import styles from "./App.module.css";
 class App extends Component {
@@ -50,7 +50,7 @@ class App extends Component {
     } catch (err) {
       console.log("Init err", err);
     }
-    if (!this.state.authToken && token) {
+    if (token) {
       auth = isAuthorized(token);
     }
     this.setState({
