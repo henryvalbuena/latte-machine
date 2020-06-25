@@ -1,0 +1,38 @@
+.container {
+    text-align: center;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    animation: shake 0.2s;
+}
+
+.text {
+    border-radius: 5px;
+    margin: 2vh auto;
+    width: 30%;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(10px, 0);
+    }
+    20% {
+        transform: translate(-10px, 0);
+    }
+    40% {
+        transform: translate(10px, 0);
+    }
+    60% {
+        transform: translate(-10px, 0);
+    }
+    80% {
+        transform: translate(10px, 0);
+    }
+    100% {
+        transform: translate(-10px, 0);
+    }
+}
