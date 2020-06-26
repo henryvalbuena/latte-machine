@@ -76,7 +76,6 @@ class App extends Component {
       ...this.state,
       isModalOpen: true,
     });
-    console.log("isOpen", true);
   };
 
   closeModal = () => {
@@ -85,7 +84,13 @@ class App extends Component {
       isModalOpen: false,
       isEditMode: false,
     });
-    console.log("isOpen", false);
+  };
+
+  closeAlert = () => {
+    this.setState({
+      ...this.state,
+      userMessage: { render: false },
+    });
   };
 
   editLatte = (id) => {
@@ -176,7 +181,6 @@ class App extends Component {
           isEditMode: false,
           latteDataList: updatedDataList,
         });
-        console.log("editted");
       });
     } else {
       try {
@@ -195,7 +199,6 @@ class App extends Component {
             });
           })
           .catch((err) => {
-            console.log("POST ERR", err);
             this.setState({
               ...this.state,
               isModalOpen: false,
@@ -207,9 +210,7 @@ class App extends Component {
               },
             });
           });
-        console.log("submitted");
       } catch (err) {
-        console.log("POST ERR", err);
         this.setState({
           ...this.state,
           isModalOpen: false,
@@ -248,7 +249,7 @@ class App extends Component {
     const renderUserMessage = () => {
       const msg = this.state.userMessage;
       if (msg.render) {
-        return <Messages {...msg} />;
+        return <Messages {...msg} close={() => this.closeAlert} />;
       }
     };
 

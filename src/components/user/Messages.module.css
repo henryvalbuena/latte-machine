@@ -1,5 +1,4 @@
 .container {
-    text-align: center;
     z-index: 1;
     position: fixed;
     width: 100%;
@@ -7,13 +6,30 @@
     animation: shake 0.2s;
 }
 
-.text {
+.textBox {
     border-radius: 5px;
     margin: 2vh auto;
     width: 30%;
-    padding: 5px;
-    color: white;
+    padding: 10px 5px;
+}
+
+.text {
+    margin-left: 10px;
+    color: #850000;
     font-weight: bold;
+}
+
+.close i {
+    font-size: medium;
+    color: #850000;
+    font-weight: bold;
+    float: right;
+    margin: 2px;
+}
+
+.close:hover i {
+    color: white;
+    cursor: pointer;
 }
 
 @keyframes shake {

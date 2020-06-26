@@ -1,11 +1,11 @@
 .error {
-    background-color: red;
+    background-color: #f8d7da;
 }
 
 .warning {
-    background-color: orange;
+    background-color: #fff3cd;
 }
 
 .info {
-    background-color: green;
+    background-color: #d4edda;
 }
