@@ -11,14 +11,15 @@ import {
   deleteLattes,
 } from "./services/apiService";
 
-import Home from "./components/Home";
 import Main from "./containers/Main";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import CreateLatte from "./components/CreateLatte";
-import Lattes from "./components/Lattes";
-import User from "./components/User";
-import LatteModal from "./components/LatteModal";
+import Home from "./components/home/Home";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import CreateLatte from "./components/latte/CreateLatte";
+import Lattes from "./components/latte/Lattes";
+import User from "./components/user/User";
+import LatteModal from "./components/modal/LatteModal";
+import { Messages, MessageLevel } from "./components/user/Messages";
 
 import styles from "./App.module.css";
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
       latteDataList: [],
       authToken: null,
       isAuthorized: false,
+      userMessage: { render: false, message: null, level: null },
     };
   }
 
@@ -38,19 +40,26 @@ class App extends Component {
     const token = getAuthToken();
     let auth = null;
     let dataList = [];
+    let userMsg = { render: false };
     try {
-      const lattes = await getLattes(token);
-      for (let latte of lattes.drinks) {
-        dataList.push({
-          id: latte.id,
-          title: latte.title,
-          ingredients: [...latte.ingredients],
-        });
+      if (this.state.latteDataList.length === 0) {
+        const lattes = await getLattes(token);
+        for (let latte of lattes.drinks) {
+          dataList.push({
+            id: latte.id,
+            title: latte.title,
+            ingredients: [...latte.ingredients],
+          });
+        }
       }
     } catch (err) {
-      console.log("Init err", err);
+      userMsg = {
+        render: true,
+        message: err.message,
+        level: MessageLevel.error,
+      };
     }
-    if (!this.state.authToken && token) {
+    if (token) {
       auth = isAuthorized(token);
     }
     this.setState({
@@ -58,6 +67,7 @@ class App extends Component {
       latteDataList: dataList,
       authToken: token,
       isAuthorized: auth,
+      userMessage: userMsg,
     });
   }
 
@@ -66,7 +76,6 @@ class App extends Component {
       ...this.state,
       isModalOpen: true,
     });
-    console.log("isOpen", true);
   };
 
   closeModal = () => {
@@ -75,7 +84,13 @@ class App extends Component {
       isModalOpen: false,
       isEditMode: false,
     });
-    console.log("isOpen", false);
+  };
+
+  closeAlert = () => {
+    this.setState({
+      ...this.state,
+      userMessage: { render: false },
+    });
   };
 
   editLatte = (id) => {
@@ -109,11 +124,15 @@ class App extends Component {
           });
         })
         .catch((err) => {
-          console.log("REMOVE", err);
           this.setState({
             ...this.state,
             isEditMode: false,
             isModalOpen: false,
+            userMessage: {
+              render: true,
+              message: err.message,
+              level: MessageLevel.error,
+            },
           });
         });
     } else {
@@ -121,6 +140,7 @@ class App extends Component {
         ...this.state,
         isEditMode: false,
         isModalOpen: false,
+        userMessage: { render: false },
       });
     }
   };
@@ -161,7 +181,6 @@ class App extends Component {
           isEditMode: false,
           latteDataList: updatedDataList,
         });
-        console.log("editted");
       });
     } else {
       try {
@@ -179,10 +198,29 @@ class App extends Component {
               latteDataList: dataList,
             });
           })
-          .catch((err) => console.log("POST ERR", err));
-        console.log("submitted");
+          .catch((err) => {
+            this.setState({
+              ...this.state,
+              isModalOpen: false,
+              isEditMode: false,
+              userMessage: {
+                render: true,
+                message: err.message,
+                level: MessageLevel.error,
+              },
+            });
+          });
       } catch (err) {
-        console.log("POST ERR", err);
+        this.setState({
+          ...this.state,
+          isModalOpen: false,
+          isEditMode: false,
+          userMessage: {
+            render: true,
+            message: err.message,
+            level: MessageLevel.error,
+          },
+        });
       }
     }
     event.preventDefault();
@@ -208,6 +246,13 @@ class App extends Component {
         return <CreateLatte openModal={() => this.openModal} />;
     };
 
+    const renderUserMessage = () => {
+      const msg = this.state.userMessage;
+      if (msg.render) {
+        return <Messages {...msg} close={() => this.closeAlert} />;
+      }
+    };
+
     return (
       <Router>
         <div className={styles.body}>
@@ -218,6 +263,7 @@ class App extends Component {
                 <Home />
               </Route>
               <Route exact path="/latte-machine/lattes">
+                {renderUserMessage()}
                 {renderModal()}
                 {renderCreateLatte()}
                 <Lattes

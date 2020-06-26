@@ -1,0 +1,54 @@
+.container {
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    animation: shake 0.2s;
+}
+
+.textBox {
+    border-radius: 5px;
+    margin: 2vh auto;
+    width: 30%;
+    padding: 10px 5px;
+}
+
+.text {
+    margin-left: 10px;
+    color: #850000;
+    font-weight: bold;
+}
+
+.close i {
+    font-size: medium;
+    color: #850000;
+    font-weight: bold;
+    float: right;
+    margin: 2px;
+}
+
+.close:hover i {
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(10px, 0);
+    }
+    20% {
+        transform: translate(-10px, 0);
+    }
+    40% {
+        transform: translate(10px, 0);
+    }
+    60% {
+        transform: translate(-10px, 0);
+    }
+    80% {
+        transform: translate(10px, 0);
+    }
+    100% {
+        transform: translate(-10px, 0);
+    }
+}
