@@ -1,7 +1,7 @@
 .lattesContainer {
   width: 100%;
   padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-bottom: 20vh;
   justify-content: center;
   align-content: center;
   grid-template-columns: auto auto auto auto;
