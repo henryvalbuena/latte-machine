@@ -8,7 +8,7 @@
 
 .textBox {
     border-radius: 5px;
-    margin: 2vh auto;
+    margin: 1vh auto;
     width: 30%;
     padding: 10px 5px;
 }
@@ -32,6 +32,18 @@
     cursor: pointer;
 }
 
+.error {
+    background-color: #f8d7da;
+}
+
+.warning {
+    background-color: #fff3cd;
+}
+
+.info {
+    background-color: #d4edda;
+}
+
 @keyframes shake {
     0% {
         transform: translate(10px, 0);
@@ -50,5 +62,11 @@
     }
     100% {
         transform: translate(-10px, 0);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .textBox {
+        width: 50%;
     }
 }
