@@ -53,9 +53,11 @@ class App extends Component {
         }
       }
     } catch (err) {
+      const msg = err.response ? err.response.status : err.message;
+      console.log(msg)
       userMsg = {
         render: true,
-        message: err.message,
+        message: msg,
         level: MessageLevel.error,
       };
     }
@@ -108,7 +110,7 @@ class App extends Component {
 
   removeLatte = (id) => {
     let latteList = [...this.state.latteDataList];
-    if (this.state.isAuthorized) {
+    if (this.state.isAuthorized && id !== null) {
       let remove = deleteLattes(id, this.state.authToken);
       remove
         .then((res) => {
@@ -124,13 +126,14 @@ class App extends Component {
           });
         })
         .catch((err) => {
+          const msg = err.response ? err.response.status : err.message;
           this.setState({
             ...this.state,
             isEditMode: false,
             isModalOpen: false,
             userMessage: {
               render: true,
-              message: err.message,
+              message: msg,
               level: MessageLevel.error,
             },
           });
@@ -155,8 +158,8 @@ class App extends Component {
   };
 
   handleForm = (event) => {
+    event.preventDefault();
     if (!this.state.isAuthorized) {
-      event.preventDefault();
       this.setState({
         ...this.state,
         isModalOpen: false,
@@ -199,13 +202,14 @@ class App extends Component {
             });
           })
           .catch((err) => {
+            const msg = err.response ? err.response.status : err.message;
             this.setState({
               ...this.state,
               isModalOpen: false,
               isEditMode: false,
               userMessage: {
                 render: true,
-                message: err.message,
+                message: msg,
                 level: MessageLevel.error,
               },
             });
@@ -217,13 +221,12 @@ class App extends Component {
           isEditMode: false,
           userMessage: {
             render: true,
-            message: err.message,
+            message: err.response.status,
             level: MessageLevel.error,
           },
         });
       }
     }
-    event.preventDefault();
   };
 
   render() {
