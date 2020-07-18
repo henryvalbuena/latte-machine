@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3aaf765ed74a5f8bc97915d9ef001fd4",
+    "revision": "068f55f54953b5fa86629f47a1434228",
     "url": "/latte-machine/index.html"
   },
   {
-    "revision": "b7e77025aa80faf35d16",
-    "url": "/latte-machine/static/css/main.59045fdd.chunk.css"
+    "revision": "dd047e88f31ebeed7f78",
+    "url": "/latte-machine/static/css/main.c11f942d.chunk.css"
   },
   {
     "revision": "c7083c1e4f0a4ae02648",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/latte-machine/static/js/2.77ba989a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b7e77025aa80faf35d16",
-    "url": "/latte-machine/static/js/main.9aaf8060.chunk.js"
+    "revision": "dd047e88f31ebeed7f78",
+    "url": "/latte-machine/static/js/main.88a8d1a9.chunk.js"
   },
   {
     "revision": "72655d8f385497a18f4c",

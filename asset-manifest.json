@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/latte-machine/static/css/main.59045fdd.chunk.css",
-    "main.js": "/latte-machine/static/js/main.9aaf8060.chunk.js",
-    "main.js.map": "/latte-machine/static/js/main.9aaf8060.chunk.js.map",
+    "main.css": "/latte-machine/static/css/main.c11f942d.chunk.css",
+    "main.js": "/latte-machine/static/js/main.88a8d1a9.chunk.js",
+    "main.js.map": "/latte-machine/static/js/main.88a8d1a9.chunk.js.map",
     "runtime-main.js": "/latte-machine/static/js/runtime-main.9a7394a5.js",
     "runtime-main.js.map": "/latte-machine/static/js/runtime-main.9a7394a5.js.map",
     "static/js/2.77ba989a.chunk.js": "/latte-machine/static/js/2.77ba989a.chunk.js",
     "static/js/2.77ba989a.chunk.js.map": "/latte-machine/static/js/2.77ba989a.chunk.js.map",
     "index.html": "/latte-machine/index.html",
-    "precache-manifest.76cdda0da25f03749f7e3367b3c9e51d.js": "/latte-machine/precache-manifest.76cdda0da25f03749f7e3367b3c9e51d.js",
+    "precache-manifest.c7b0dd5d6f76595fc4074dc04f45c2f7.js": "/latte-machine/precache-manifest.c7b0dd5d6f76595fc4074dc04f45c2f7.js",
     "service-worker.js": "/latte-machine/service-worker.js",
-    "static/css/main.59045fdd.chunk.css.map": "/latte-machine/static/css/main.59045fdd.chunk.css.map",
+    "static/css/main.c11f942d.chunk.css.map": "/latte-machine/static/css/main.c11f942d.chunk.css.map",
     "static/js/2.77ba989a.chunk.js.LICENSE.txt": "/latte-machine/static/js/2.77ba989a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9a7394a5.js",
     "static/js/2.77ba989a.chunk.js",
-    "static/css/main.59045fdd.chunk.css",
-    "static/js/main.9aaf8060.chunk.js"
+    "static/css/main.c11f942d.chunk.css",
+    "static/js/main.88a8d1a9.chunk.js"
   ]
 }
