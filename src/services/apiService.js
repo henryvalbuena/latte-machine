@@ -18,17 +18,17 @@ const axiosManager = async (method, token, endpoint, payload = null) => {
 };
 
 export const postLattes = async (payload, token) => {
-  return axiosManager("post", token, "/drinks", payload);
+  return axiosManager("post", token, "/latte", payload);
 };
 
 export const getLattes = async (token) => {
-  return axiosManager("get", token, "/drinks");
+  return axiosManager("get", token, "/latte");
 };
 
 export const editLattes = async (id, payload, token) => {
-  return axiosManager("patch", token, `/drinks/${id}`, payload);
+  return axiosManager("patch", token, `/latte/${id}`, payload);
 };
 
 export const deleteLattes = async (id, token) => {
-  return axiosManager("delete", token, `/drinks/${id}`);
+  return axiosManager("delete", token, `/latte/${id}`);
 };

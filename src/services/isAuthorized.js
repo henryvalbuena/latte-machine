@@ -18,11 +18,11 @@ const isAuthorized = (token) => {
   const currentTime = parseInt(Date.now() / 1000);
   if (currentTime > parsedToken.exp)
     return false;
-  if (!parsedToken.permissions.includes("delete:drinks"))
+  if (!parsedToken.permissions.includes("delete:latte"))
     return false;
-  if (!parsedToken.permissions.includes("patch:drinks"))
+  if (!parsedToken.permissions.includes("patch:latte"))
     return false;
-  if (!parsedToken.permissions.includes("post:drinks"))
+  if (!parsedToken.permissions.includes("post:latte"))
     return false;
   return true;
 }

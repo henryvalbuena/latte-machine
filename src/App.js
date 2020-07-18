@@ -43,8 +43,8 @@ class App extends Component {
     let userMsg = { render: false };
     try {
       if (this.state.latteDataList.length === 0) {
-        const lattes = await getLattes(token);
-        for (let latte of lattes.drinks) {
+        const data = await getLattes(token);
+        for (let latte of data.lattes) {
           dataList.push({
             id: latte.id,
             title: latte.title,
@@ -173,7 +173,7 @@ class App extends Component {
       const id = this.state.latteToEdit.id;
       let patch = editLattes(id, newLatte, this.state.authToken);
       patch.then((data) => {
-        const latte = data.drinks[0];
+        const latte = data.lattes[0];
         const updatedDataList = dataList.map((l) => {
           if (parseInt(l.id) === parseInt(id)) return latte;
           else return l;
@@ -190,7 +190,7 @@ class App extends Component {
         const post = postLattes(newLatte, this.state.authToken);
         post
           .then((data) => {
-            const latte = data.drinks[0];
+            const latte = data.lattes[0];
             dataList.push({
               ...latte,
             });
