@@ -9,7 +9,7 @@ const development = {
 };
 
 const ghpages = {
-  apiURL: "https://shielded-wildwood-23349.herokuapp.com/api",
+  apiURL: "https://mothership-v2.herokuapp.com/api",
   auth0: {
     url: "coffe-shop-project", // the auth0 domain prefix
     audience: "drinks", // the audience set for the auth0 app
